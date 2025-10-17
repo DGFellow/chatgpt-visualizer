@@ -17,6 +17,8 @@ def load_conversations(file_path):
         create_dt = datetime.datetime.fromtimestamp(create_time) if create_time else None
         update_dt = datetime.datetime.fromtimestamp(update_time) if update_time else None
         
+        display_title = f"{title} - {create_dt.strftime('%Y-%m-%d') if create_dt else 'No Date'}"
+        
         # Reconstruct conversation thread (simple linear traversal)
         mapping = conv.get('mapping', {})
         current_node = conv.get('current_node')
@@ -51,6 +53,7 @@ def load_conversations(file_path):
             'title': title,
             'create_time': create_dt,
             'update_time': update_dt,
+            'display_title': display_title,
             'thread': thread  # List of (role, content) tuples
         })
     
